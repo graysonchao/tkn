@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tk"
+name = "tkn"
 version = "0.1.0"
 description = "A command-line utility for working with BPE tokenizers"
 authors = ["Grayson Chao <grayson.chao@gmail.com>"]
@@ -11,10 +11,7 @@ python = ">=3.10,<3.13"
 tiktoken = "^0.5.1"
 
 [tool.poetry.scripts]
-tk = 'tk.main:main'
-
-[tool.poetry.group.dev.dependencies]
-pyinstaller = "^6.0.0"
+tkn = 'tkn.main:main'
 
 [build-system]
 requires = ["poetry-core"]
