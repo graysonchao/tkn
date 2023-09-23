@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tkn"
-version = "0.1.1"
+version = "0.1.2"
 description = "A command-line utility for working with BPE tokenizers"
 authors = ["Grayson Chao <grayson.chao@gmail.com>"]
 license = "MIT"

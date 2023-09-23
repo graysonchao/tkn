@@ -19,15 +19,5 @@ $ tkn document_1.txt
 $ tkn document_1.txt -s '\n' | wc -l
 2094 # document contains 2094 tokens
 
-$ tkn document_1.txt -o json
-[the tokenized data represented in txt]
-
-$ tkn document_1.txt -d
-[decoded version of the data]
-
-$ tkn document_1.txt -e utf-8
-[the data encoded in utf-8]
-
-$ tkn document_1.txt -m model_name
-[the data tokenized using the specified model]
-```
+$ tkn -m gpt-4 document_1.txt | tkn -m gpt-4 -d
+[the contents of document_1.txt]

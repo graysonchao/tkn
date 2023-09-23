@@ -23,10 +23,16 @@ def main():
     args = parser.parse_args()
 
     tokenizer = None
-    if args.encoding:
-        tokenizer = tiktoken.get_encoding(args.encoding)
-    elif args.model:
-        tokenizer = tiktoken.encoding_for_model(args.model)
+    try:
+        if args.encoding:
+            tokenizer = tiktoken.get_encoding(args.encoding)
+        elif args.model:
+            tokenizer = tiktoken.encoding_for_model(args.model)
+    except:
+        print(f"{args.encoding or args.model} is invalid. Try one of these:")
+        print(f"models: {list(tiktoken.model.MODEL_TO_ENCODING.keys())}")
+        print(f"encodings: {list(set(tiktoken.model.MODEL_TO_ENCODING.values()))}")
+        sys.exit(1)
 
     if args.filename:
         with open(args.filename, 'r') as file:
@@ -47,10 +53,10 @@ def main():
                 for i in tokens:
                     if not isinstance(i, int):
                         print("Error: Input should be a list of integers")
-                        sys.exit(1)
+                        sys.exit(2)
             except:
                 print("Invalid input")
-                sys.exit(2)
+                sys.exit(3)
             output = tokenizer.decode(tokens)
         else:
             output = tokenizer.encode(c)
