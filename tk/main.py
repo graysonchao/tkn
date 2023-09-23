@@ -6,6 +6,7 @@ def main():
     parser = ArgumentParser(description="Encode or decode a file using tiktoken.")
     parser.add_argument("filename", nargs='?', type=str, help="The file to encode or decode.")
     parser.add_argument("-d", "--decode", action='store_true', default=False, help="Whether to decode the file.")
+    parser.add_argument("-s", "--split", action='store_true', default=False, help="Tokenize each line separately")
     
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("-e", "--encoding", type=str, help="The encoding to use. Passed to tiktoken.Tokenizer")
@@ -25,12 +26,18 @@ def main():
     else:
         content = sys.stdin.read()
 
-    if args.decode:
-        output = tokenizer.decode(content)
+    
+    if args.split:
+        content = content.split("\n")
     else:
-        output = tokenizer.encode(content)
+        content = [content]
 
-    print(output)
+    for c in content:
+        if args.decode:
+            output = tokenizer.decode(c)
+        else:
+            output = tokenizer.encode(c)
+        print(f"[{','.join(map(str, output))}]")
 
 if __name__ == "__main__":
     main()

@@ -1,20 +1,33 @@
 # `tk`
 
-`tk` is a command-line utility for working with tokenizers.
+`tk` is a command-line utility to quickly tokenize with `tiktoken`.
+
+## Installation
+
+`pip install tk`
 
 Example usage:
 
 ```
 $ ls
-training_data_1.json
-training_data_2.json
+document_1.txt
+document_2.txt
 
-$ tk training_data_1.json
+$ tk document_1.txt
 [tokenized version of the data]
 
-$ tk training_data_1.json -s '\n' | wc -l
+$ tk document_1.txt -s '\n' | wc -l
 2094 # document contains 2094 tokens
 
-$ tk training_data_1.json -o json
-[the tokenized data represented in json]
+$ tk document_1.txt -o json
+[the tokenized data represented in txt]
+
+$ tk document_1.txt -d
+[decoded version of the data]
+
+$ tk document_1.txt -e utf-8
+[the data encoded in utf-8]
+
+$ tk document_1.txt -m model_name
+[the data tokenized using the specified model]
 ```
